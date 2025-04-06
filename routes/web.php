@@ -29,3 +29,22 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+Route::resource('users', App\Http\Controllers\UserController::class);
+
+Route::resource('employes', App\Http\Controllers\EmployeController::class);
+
+Route::resource('cessation-activites', App\Http\Controllers\CessationActiviteController::class);
+
+Route::resource('fonctions', App\Http\Controllers\FonctionController::class);
+
+Route::resource('directions', App\Http\Controllers\DirectionController::class);
+
+Route::resource('commissariats', App\Http\Controllers\CommissariatController::class);
+
+Route::resource('motifs', App\Http\Controllers\MotifController::class);
+
+Route::resource('applications', App\Http\Controllers\ApplicationController::class);
+
+Route::resource('user-applications', App\Http\Controllers\UserApplicationController::class);

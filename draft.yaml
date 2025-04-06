@@ -13,7 +13,7 @@ models:
     timestamps: true
     softDeletes: true
     relationships:
-      hasMany: [Configuration, CessationActivite, UserApplication]
+      hasMany:  CessationActivite, UserApplication
 
   Employe:
     id: id
@@ -26,7 +26,6 @@ models:
     profil: string
     phone: string
     is_active: boolean
-    location_id: integer nullable
     fonction_id: id foreign
     direction_id: id foreign
     commissariat_id: id foreign
@@ -34,7 +33,7 @@ models:
     timestamps: true
     softDeletes: true
     relationships:
-      belongsTo: [Fonction, Direction, Commissariat, Application]
+      belongsTo: Fonction, Direction, Commissariat, Application
       hasMany: CessationActivite
 
   CessationActivite:
@@ -47,7 +46,7 @@ models:
     user_id: id foreign nullable
     timestamps: true
     relationships:
-      belongsTo: [Employe, Motif, User]
+      belongsTo: Employe, Motif, User
 
   Fonction:
     id: id
@@ -88,7 +87,7 @@ models:
     description: string
     timestamps: true
     relationships:
-      hasMany: [Employe, UserApplication]
+      hasMany: Employe, UserApplication
 
   UserApplication:
     id: id
@@ -96,7 +95,7 @@ models:
     application_id: id foreign
     timestamps: true
     relationships:
-      belongsTo: [User, Application]
+      belongsTo: User, Application
 
 
 

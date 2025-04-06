@@ -1,2 +1,112 @@
+created:
+    - app/Http/Controllers/UserController.php
+    - app/Http/Controllers/EmployeController.php
+    - app/Http/Controllers/CessationActiviteController.php
+    - app/Http/Controllers/FonctionController.php
+    - app/Http/Controllers/DirectionController.php
+    - app/Http/Controllers/CommissariatController.php
+    - app/Http/Controllers/MotifController.php
+    - app/Http/Controllers/ApplicationController.php
+    - app/Http/Controllers/UserApplicationController.php
+    - database/factories/UserFactory.php
+    - database/factories/EmployeFactory.php
+    - database/factories/CessationActiviteFactory.php
+    - database/factories/FonctionFactory.php
+    - database/factories/DirectionFactory.php
+    - database/factories/CommissariatFactory.php
+    - database/factories/MotifFactory.php
+    - database/factories/ApplicationFactory.php
+    - database/factories/UserApplicationFactory.php
+    - database/migrations/2025_04_06_173335_create_users_table.php
+    - database/migrations/2025_04_06_173336_create_employes_table.php
+    - database/migrations/2025_04_06_173337_create_cessation_activites_table.php
+    - database/migrations/2025_04_06_173338_create_fonctions_table.php
+    - database/migrations/2025_04_06_173339_create_directions_table.php
+    - database/migrations/2025_04_06_173340_create_commissariats_table.php
+    - database/migrations/2025_04_06_173341_create_motifs_table.php
+    - database/migrations/2025_04_06_173342_create_applications_table.php
+    - database/migrations/2025_04_06_173343_create_user_applications_table.php
+    - app/Models/User.php
+    - app/Models/Employe.php
+    - app/Models/CessationActivite.php
+    - app/Models/Fonction.php
+    - app/Models/Direction.php
+    - app/Models/Commissariat.php
+    - app/Models/Motif.php
+    - app/Models/Application.php
+    - app/Models/UserApplication.php
+    - tests/Feature/Http/Controllers/UserControllerTest.php
+    - tests/Feature/Http/Controllers/EmployeControllerTest.php
+    - tests/Feature/Http/Controllers/CessationActiviteControllerTest.php
+    - tests/Feature/Http/Controllers/FonctionControllerTest.php
+    - tests/Feature/Http/Controllers/DirectionControllerTest.php
+    - tests/Feature/Http/Controllers/CommissariatControllerTest.php
+    - tests/Feature/Http/Controllers/MotifControllerTest.php
+    - tests/Feature/Http/Controllers/ApplicationControllerTest.php
+    - tests/Feature/Http/Controllers/UserApplicationControllerTest.php
+    - app/Http/Requests/UserStoreRequest.php
+    - app/Http/Requests/UserUpdateRequest.php
+    - app/Http/Requests/EmployeStoreRequest.php
+    - app/Http/Requests/EmployeUpdateRequest.php
+    - app/Http/Requests/CessationActiviteStoreRequest.php
+    - app/Http/Requests/CessationActiviteUpdateRequest.php
+    - app/Http/Requests/FonctionStoreRequest.php
+    - app/Http/Requests/FonctionUpdateRequest.php
+    - app/Http/Requests/DirectionStoreRequest.php
+    - app/Http/Requests/DirectionUpdateRequest.php
+    - app/Http/Requests/CommissariatStoreRequest.php
+    - app/Http/Requests/CommissariatUpdateRequest.php
+    - app/Http/Requests/MotifStoreRequest.php
+    - app/Http/Requests/MotifUpdateRequest.php
+    - app/Http/Requests/ApplicationStoreRequest.php
+    - app/Http/Requests/ApplicationUpdateRequest.php
+    - app/Http/Requests/UserApplicationStoreRequest.php
+    - app/Http/Requests/UserApplicationUpdateRequest.php
+    - resources/views/user/index.blade.php
+    - resources/views/user/create.blade.php
+    - resources/views/user/show.blade.php
+    - resources/views/user/edit.blade.php
+    - resources/views/employe/index.blade.php
+    - resources/views/employe/create.blade.php
+    - resources/views/employe/show.blade.php
+    - resources/views/employe/edit.blade.php
+    - resources/views/cessationActivite/index.blade.php
+    - resources/views/cessationActivite/create.blade.php
+    - resources/views/cessationActivite/show.blade.php
+    - resources/views/cessationActivite/edit.blade.php
+    - resources/views/fonction/index.blade.php
+    - resources/views/fonction/create.blade.php
+    - resources/views/fonction/show.blade.php
+    - resources/views/fonction/edit.blade.php
+    - resources/views/direction/index.blade.php
+    - resources/views/direction/create.blade.php
+    - resources/views/direction/show.blade.php
+    - resources/views/direction/edit.blade.php
+    - resources/views/commissariat/index.blade.php
+    - resources/views/commissariat/create.blade.php
+    - resources/views/commissariat/show.blade.php
+    - resources/views/commissariat/edit.blade.php
+    - resources/views/motif/index.blade.php
+    - resources/views/motif/create.blade.php
+    - resources/views/motif/show.blade.php
+    - resources/views/motif/edit.blade.php
+    - resources/views/application/index.blade.php
+    - resources/views/application/create.blade.php
+    - resources/views/application/show.blade.php
+    - resources/views/application/edit.blade.php
+    - resources/views/userApplication/index.blade.php
+    - resources/views/userApplication/create.blade.php
+    - resources/views/userApplication/show.blade.php
+    - resources/views/userApplication/edit.blade.php
+updated:
+    - routes/web.php
 models:
-    User: { name: string, email: string, phone: 'string nullable default:NULL', location: 'string nullable default:NULL', bio: 'text nullable default:NULL', profile_picture: 'string nullable default:NULL', payment_method: 'string nullable default:NULL', email_verified_at: 'timestamp nullable default:NULL', password: string, remember_token: 'string nullable default:NULL' }
+    User: { id: id, username: string, email: string, password: string, role: string, profile_image: string, phone: string, is_active: boolean, email_verified_at: 'timestamp nullable', remember_token: 'string nullable', timestamps: timestamps, softdeletes: softDeletes, relationships: { hasMany: 'CessationActivite, UserApplication' } }
+    Employe: { id: id, matricule: string, nom: string, prenom: string, genre: string, adresse: string, email: string, profil: string, phone: string, is_active: boolean, location_id: 'integer nullable', fonction_id: 'id foreign', direction_id: 'id foreign', commissariat_id: 'id foreign', application_id: 'id foreign', timestamps: timestamps, softdeletes: softDeletes, relationships: { belongsTo: 'Fonction, Direction, Commissariat, Application', hasMany: CessationActivite } }
+    CessationActivite: { id: id, employe_id: 'id foreign', date_entree: date, date_sortie: date, motif_id: 'id foreign', description: text, user_id: 'id foreign nullable', timestamps: timestamps, relationships: { belongsTo: 'Employe, Motif, User' } }
+    Fonction: { id: id, nom: string, timestamps: timestamps, softdeletes: softDeletes, relationships: { hasMany: Employe } }
+    Direction: { id: id, nom: string, timestamps: timestamps, softdeletes: softDeletes, relationships: { hasMany: Employe } }
+    Commissariat: { id: id, nom: string, timestamps: timestamps, softdeletes: softDeletes, relationships: { hasMany: Employe } }
+    Motif: { id: id, titre: string, contenu: text, status: string, timestamps: timestamps, relationships: { hasMany: CessationActivite } }
+    Application: { id: id, titre: string, description: string, timestamps: timestamps, relationships: { hasMany: 'Employe, UserApplication' } }
+    UserApplication: { id: id, user_id: 'id foreign', application_id: 'id foreign', timestamps: timestamps, relationships: { belongsTo: 'User, Application' } }
