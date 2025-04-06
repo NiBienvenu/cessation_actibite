@@ -1,0 +1,2 @@
+models:
+    User: { name: string, email: string, phone: 'string nullable default:NULL', location: 'string nullable default:NULL', bio: 'text nullable default:NULL', profile_picture: 'string nullable default:NULL', payment_method: 'string nullable default:NULL', email_verified_at: 'timestamp nullable default:NULL', password: string, remember_token: 'string nullable default:NULL' }

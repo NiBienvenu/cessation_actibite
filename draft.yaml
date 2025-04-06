@@ -1,0 +1,121 @@
+models:
+  User:
+    id: id
+    username: string
+    email: string
+    password: string
+    role: string
+    profile_image: string
+    phone: string
+    is_active: boolean
+    email_verified_at: timestamp nullable
+    remember_token: string nullable
+    timestamps: true
+    softDeletes: true
+    relationships:
+      hasMany: [Configuration, CessationActivite, UserApplication]
+
+  Employe:
+    id: id
+    matricule: string
+    nom: string
+    prenom: string
+    genre: string
+    adresse: string
+    email: string
+    profil: string
+    phone: string
+    is_active: boolean
+    location_id: integer nullable
+    fonction_id: id foreign
+    direction_id: id foreign
+    commissariat_id: id foreign
+    application_id: id foreign
+    timestamps: true
+    softDeletes: true
+    relationships:
+      belongsTo: [Fonction, Direction, Commissariat, Application]
+      hasMany: CessationActivite
+
+  CessationActivite:
+    id: id
+    employe_id: id foreign
+    date_entree: date
+    date_sortie: date
+    motif_id: id foreign
+    description: text
+    user_id: id foreign nullable
+    timestamps: true
+    relationships:
+      belongsTo: [Employe, Motif, User]
+
+  Fonction:
+    id: id
+    nom: string
+    timestamps: true
+    softDeletes: true
+    relationships:
+      hasMany: Employe
+
+  Direction:
+    id: id
+    nom: string
+    timestamps: true
+    softDeletes: true
+    relationships:
+      hasMany: Employe
+
+  Commissariat:
+    id: id
+    nom: string
+    timestamps: true
+    softDeletes: true
+    relationships:
+      hasMany: Employe
+
+  Motif:
+    id: id
+    titre: string
+    contenu: text
+    status: string
+    timestamps: true
+    relationships:
+      hasMany: CessationActivite
+
+  Application:
+    id: id
+    titre: string
+    description: string
+    timestamps: true
+    relationships:
+      hasMany: [Employe, UserApplication]
+
+  UserApplication:
+    id: id
+    user_id: id foreign
+    application_id: id foreign
+    timestamps: true
+    relationships:
+      belongsTo: [User, Application]
+
+
+
+controllers:
+  User:
+    resource: web
+  Employe:
+    resource: web
+  CessationActivite:
+    resource: web
+  Fonction:
+    resource: web
+  Direction:
+    resource: web
+  Commissariat:
+    resource: web
+  Motif:
+    resource: web
+  Application:
+    resource: web
+  UserApplication:
+    resource: web
